@@ -35,14 +35,7 @@ fn view(app: &App, model: &Model, frame: Frame) {
     // get canvas to draw on
     let draw = app.draw();
 
-    for field in model.grid.fields.iter() {
-        draw.rect()
-            .wh(field.rect.wh())
-            .xy(field.rect.xy())
-            .stroke_weight(1.0)
-            .stroke_color(BLACK)
-            .color(WHITESMOKE);
-    }
+    model.grid.draw(&draw);
 
     // set background to blue
     draw.background().color(BLUE);

@@ -23,11 +23,17 @@ impl Grid {
                 let xy = vec2(x as f32, y as f32);
 
                 let rect = Rect::from_xy_wh(xy, size);
-                let force_field = ForceField { rect };
+                let force_field = ForceField::new(rect);
                 fields.push(force_field);
             }
         }
 
         Grid { fields }
+    }
+
+    pub fn draw(&self, draw: &Draw) {
+        for field in self.fields.iter() {
+            field.draw(&draw)
+        }
     }
 }
