@@ -1,9 +1,10 @@
 use nannou::prelude::*;
 
 fn main() {
-    nannou::app(model).simple_window(view).run();
+    nannou::app(setup).update(update).run();
 }
-
+const HEIGHT: u32 = 700;
+const WIDTH: u32 = 700;
 const GRID_SIZE: (usize, usize) = (8, 8);
 
 struct ForceField {
@@ -46,11 +47,21 @@ struct Model {
     grid: Grid,
 }
 
-fn model(app: &App) -> Model {
+fn setup(app: &App) -> Model {
+    app.set_loop_mode(LoopMode::loop_once());
+    let _window = app
+        .new_window()
+        .size(WIDTH, HEIGHT)
+        .view(view)
+        .build()
+        .expect("failed to build window");
+
     Model {
         grid: Grid::new(GRID_SIZE, app.window_rect()),
     }
 }
+
+fn update(_app: &App, _model: &mut Model, _update: Update) {}
 
 fn view(app: &App, model: &Model, frame: Frame) {
     // get canvas to draw on
