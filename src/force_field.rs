@@ -21,5 +21,22 @@ impl ForceField {
             .stroke_weight(1.0)
             .stroke_color(BLACK)
             .color(WHITESMOKE);
+        self.draw_force_vector(draw)
+    }
+
+    fn draw_force_vector(&self, draw: &Draw) {
+        // arrow line
+        let color = BLACK;
+        let start = self.rect.xy();
+        let end = start + self.force * 25.0; // 25 is magic
+        draw.line()
+            .start(start)
+            .end(end)
+            .stroke_weight(3.0)
+            .color(color);
+
+        // arrow tip
+        let tip_size = self.rect.wh() / 12.0; // 12 is magic
+        draw.ellipse().xy(start).wh(tip_size).color(color);
     }
 }
