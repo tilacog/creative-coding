@@ -29,6 +29,6 @@ impl Particle {
         self.acceleration = Vec2::ZERO;
 
         // speed limit
-        self.velocity.clamp(vec2(-0.5, -0.5), vec2(0.5, 0.5));
+        self.velocity.clamp(vec2(-0.1, -0.1), vec2(0.1, 0.1));
     }
 }

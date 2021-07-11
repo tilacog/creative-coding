@@ -7,10 +7,7 @@ pub struct ForceField {
 }
 
 impl ForceField {
-    pub fn new(rect: Rect) -> ForceField {
-        let random_x = random_f32() * 2.0 - 1.0;
-        let random_y = random_f32() * 2.0 - 1.0;
-        let force = vec2(random_x, random_y).normalize();
+    pub fn new(rect: Rect, force: Vec2) -> ForceField {
         ForceField { rect, force }
     }
 
