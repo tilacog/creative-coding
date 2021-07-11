@@ -9,8 +9,8 @@ use particle::Particle;
 fn main() {
     nannou::app(setup).update(update).run();
 }
-const HEIGHT: u32 = 1200;
-const WIDTH: u32 = 1200;
+pub const HEIGHT: u32 = 1200;
+pub const WIDTH: u32 = 1200;
 const GRID_SIZE: (usize, usize) = (32, 32);
 
 struct Model {
@@ -27,9 +27,10 @@ fn setup(app: &App) -> Model {
         .build()
         .expect("failed to build window");
 
+    let particles: Vec<Particle> = (0..1_000).map(|_| Particle::new()).collect();
     Model {
         grid: Grid::new(GRID_SIZE, app.window_rect()),
-        particles: vec![Particle::new()],
+        particles,
     }
 }
 

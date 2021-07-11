@@ -1,5 +1,5 @@
+use super::{HEIGHT, WIDTH};
 use nannou::prelude::*;
-
 pub struct Particle {
     pub position: Vec2,
     velocity: Vec2,
@@ -9,8 +9,14 @@ pub struct Particle {
 
 impl Particle {
     pub fn new() -> Particle {
+        let position = {
+            let random_x = (random_f32() * 2.0 - 1.0) * (WIDTH as f32 / 4.0);
+            let random_y = (random_f32() * 2.0 - 1.0) * (HEIGHT as f32 / 4.0);
+            vec2(random_x, random_y)
+        };
+
         Particle {
-            position: Vec2::ZERO,
+            position,
             velocity: Vec2::ZERO,
             acceleration: Vec2::ZERO,
         }
