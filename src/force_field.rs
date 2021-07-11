@@ -1,6 +1,6 @@
+use crate::particle::Particle;
 use nannou::prelude::*;
 
-#[derive(Debug)]
 pub struct ForceField {
     pub rect: Rect,
     pub force: Vec2,
@@ -38,5 +38,9 @@ impl ForceField {
         // arrow tip
         let tip_size = self.rect.wh() / 12.0; // 12 is magic
         draw.ellipse().xy(start).wh(tip_size).color(color);
+    }
+
+    pub fn apply_force(&self, particle: &mut Particle) {
+        particle.acceleration += self.force * 0.01;
     }
 }
